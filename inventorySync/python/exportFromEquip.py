@@ -6,7 +6,7 @@ import fileinput
 from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
-
+from selenium.webdriver.chrome.options import Options
 
 #Get curent logged in user
 currentUser = os.getlogin()
@@ -17,6 +17,7 @@ password = str(sys.argv[2])
 active = str(sys.argv[3])
 inactive = str(sys.argv[4])
 computerList = str(sys.argv[5])
+googleChrome = str(sys.argv[6])
 
 #CSV Data
 cpuListPath = str('/Users/'+str(currentUser)+'/Downloads/AssetTemplate_81_1.csv')
@@ -38,25 +39,41 @@ if os.path.exists(active):
 ztag = 'Z000'
 
 #Setup Web Driver
-url = 'https://ecsu.e-isg.com/eQuip/Login.aspx'
-driver = webdriver.Chrome("/Applications/inventorySync.app/Contents/Resources/webdriver/chromedriver")
+
+options = webdriver.ChromeOptions()
+#options.add_experimental_option("excludeSwitches",["ignore-certificate-errors"])
+options.add_argument('--disable-gpu')
+options.add_argument('--headless')
+options.add_argument('--window-size=1920,1080');
+driver = webdriver.Chrome(options=options, executable_path=googleChrome)
+
+
 action = ActionChains(driver)
+url = 'https://ecsu.e-isg.com/eQuip/Login.aspx'
 driver.get(url)
 
 #logging in to the designated website
 driver.find_element_by_id('rtbUserName').send_keys(username)
 driver.find_element_by_id('rtbPassword').send_keys(password)
 driver.find_element_by_id("btnLogin").click()
-driver.implicitly_wait(3)
-
+driver.implicitly_wait(5)
+time.sleep(2)
 #dropdown menu selection
 drop_down= driver.find_element_by_xpath('//*[@title="SEARCH"]')
 drop_down.click()
+print("login successfull")
+
+# Send a command to tell chrome to download files in download_dir without
+# asking.
+driver.command_executor._commands["send_command"] = ("POST",'/session/$sessionId/chromium/send_command')
+params = {'cmd': 'Page.setDownloadBehavior','params': {'behavior': 'allow','downloadPath': str('/Users/'+str(currentUser)+'/Downloads')}}
+driver.execute("send_command", params)
+
+#print(driver.page_source)
 actions = ActionChains(driver)
 actions.send_keys(Keys.ARROW_DOWN)
 actions.send_keys(Keys.ENTER)
 actions.perform()
-driver.implicitly_wait(5)
 
 #applying the search filters
 driver.find_element_by_id('C_F_217').send_keys(ztag)
@@ -124,3 +141,4 @@ for row in completeListCSV:
 ActiveMacsCsv.close()
 inActiveMacsCsv.close()
 completeList.close()
+driver.quit()

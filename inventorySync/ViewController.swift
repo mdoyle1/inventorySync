@@ -16,6 +16,7 @@ let scriptFilePath = Bundle.main.path(forResource: scriptName, ofType: "py", inD
 let computerListCSV = Bundle.main.path(forResource: "computerList", ofType: "csv", inDirectory: "csv")
 let activeCSV = Bundle.main.path(forResource: "ActiveMacs", ofType: "csv", inDirectory: "csv")
 let inActiveCSV = Bundle.main.path(forResource: "inActiveMacs", ofType: "csv", inDirectory: "csv")
+let webdriver = Bundle.main.path(forResource: "chromedriver", ofType: "", inDirectory: "webdriver")
 
 class ViewController: NSViewController {
     
@@ -58,14 +59,14 @@ class ViewController: NSViewController {
         let process = Process()
         process.launchPath = "/Library/Frameworks/Python.framework/Versions/3.7/bin/python3"
         // process.currentDirectoryPath = "\(scriptFilePath)"
-        process.arguments = ([scriptFilePath, userName.stringValue, password.stringValue, activeCSV, inActiveCSV, computerListCSV]) as? [String]
+        process.arguments = ([scriptFilePath, userName.stringValue, password.stringValue, activeCSV, inActiveCSV, computerListCSV, webdriver]) as? [String]
         process.launch()
         parseCSV()
     }
     
     func parseCSV(){
         var masterList = [readDataFromFile(file: "ActiveMacs")]
-        print(masterList[0]!)
+        print(masterList[0])
         for computer in masterList {
             computerBox.documentView!.insertNewline(computer)
             computerBox.documentView!.insertText(computer!)
