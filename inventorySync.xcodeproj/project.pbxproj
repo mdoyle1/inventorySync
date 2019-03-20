@@ -8,14 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		7F2FB592223BE6A20073D73A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2FB591223BE6A20073D73A /* AppDelegate.swift */; };
-		7F2FB594223BE6A20073D73A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2FB593223BE6A20073D73A /* ViewController.swift */; };
 		7F2FB596223BE6A40073D73A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F2FB595223BE6A40073D73A /* Assets.xcassets */; };
 		7F2FB599223BE6A40073D73A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F2FB597223BE6A40073D73A /* Main.storyboard */; };
 		7F2FB5A5223BE6A40073D73A /* inventorySyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2FB5A4223BE6A40073D73A /* inventorySyncTests.swift */; };
 		7F2FB5B0223BE6A40073D73A /* inventorySyncUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2FB5AF223BE6A40073D73A /* inventorySyncUITests.swift */; };
 		7F2FB5CE223C208E0073D73A /* python in Resources */ = {isa = PBXBuildFile; fileRef = 7F2FB5CD223C208E0073D73A /* python */; };
-		7F9DB325224116BE002F1F3A /* webdriver in Resources */ = {isa = PBXBuildFile; fileRef = 7F9DB324224116BE002F1F3A /* webdriver */; };
-		7F9DB32822411B7E002F1F3A /* csv in Resources */ = {isa = PBXBuildFile; fileRef = 7F9DB32722411B7E002F1F3A /* csv */; };
+		C3C014822241DDA100CAD4FC /* csv in Resources */ = {isa = PBXBuildFile; fileRef = C3C014812241DDA100CAD4FC /* csv */; };
+		C3C014862241DE3100CAD4FC /* webdriver in Resources */ = {isa = PBXBuildFile; fileRef = C3C014852241DE3100CAD4FC /* webdriver */; };
+		C3C014882241DE3C00CAD4FC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C014872241DE3C00CAD4FC /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +38,6 @@
 /* Begin PBXFileReference section */
 		7F2FB58E223BE6A20073D73A /* inventorySync.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = inventorySync.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F2FB591223BE6A20073D73A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7F2FB593223BE6A20073D73A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7F2FB595223BE6A40073D73A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7F2FB598223BE6A40073D73A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7F2FB59A223BE6A40073D73A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -50,8 +49,9 @@
 		7F2FB5AF223BE6A40073D73A /* inventorySyncUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = inventorySyncUITests.swift; sourceTree = "<group>"; };
 		7F2FB5B1223BE6A40073D73A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7F2FB5CD223C208E0073D73A /* python */ = {isa = PBXFileReference; lastKnownFileType = folder; path = python; sourceTree = "<group>"; };
-		7F9DB324224116BE002F1F3A /* webdriver */ = {isa = PBXFileReference; lastKnownFileType = folder; path = webdriver; sourceTree = "<group>"; };
-		7F9DB32722411B7E002F1F3A /* csv */ = {isa = PBXFileReference; lastKnownFileType = folder; path = csv; sourceTree = "<group>"; };
+		C3C014812241DDA100CAD4FC /* csv */ = {isa = PBXFileReference; lastKnownFileType = folder; path = csv; sourceTree = "<group>"; };
+		C3C014852241DE3100CAD4FC /* webdriver */ = {isa = PBXFileReference; lastKnownFileType = folder; path = webdriver; sourceTree = "<group>"; };
+		C3C014872241DE3C00CAD4FC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,15 +102,15 @@
 		7F2FB590223BE6A20073D73A /* inventorySync */ = {
 			isa = PBXGroup;
 			children = (
-				7F2FB591223BE6A20073D73A /* AppDelegate.swift */,
 				7F2FB5CD223C208E0073D73A /* python */,
-				7F2FB593223BE6A20073D73A /* ViewController.swift */,
-				7F9DB324224116BE002F1F3A /* webdriver */,
-				7F2FB595223BE6A40073D73A /* Assets.xcassets */,
+				C3C014812241DDA100CAD4FC /* csv */,
+				C3C014852241DE3100CAD4FC /* webdriver */,
+				7F2FB591223BE6A20073D73A /* AppDelegate.swift */,
+				C3C014872241DE3C00CAD4FC /* ViewController.swift */,
 				7F2FB597223BE6A40073D73A /* Main.storyboard */,
-				7F9DB32722411B7E002F1F3A /* csv */,
 				7F2FB59A223BE6A40073D73A /* Info.plist */,
 				7F2FB59B223BE6A40073D73A /* inventorySync.entitlements */,
+				7F2FB595223BE6A40073D73A /* Assets.xcassets */,
 			);
 			path = inventorySync;
 			sourceTree = "<group>";
@@ -243,10 +243,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F2FB5CE223C208E0073D73A /* python in Resources */,
+				C3C014862241DE3100CAD4FC /* webdriver in Resources */,
 				7F2FB596223BE6A40073D73A /* Assets.xcassets in Resources */,
-				7F9DB32822411B7E002F1F3A /* csv in Resources */,
+				C3C014822241DDA100CAD4FC /* csv in Resources */,
 				7F2FB599223BE6A40073D73A /* Main.storyboard in Resources */,
-				7F9DB325224116BE002F1F3A /* webdriver in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,7 +271,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7F2FB594223BE6A20073D73A /* ViewController.swift in Sources */,
+				C3C014882241DE3C00CAD4FC /* ViewController.swift in Sources */,
 				7F2FB592223BE6A20073D73A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
