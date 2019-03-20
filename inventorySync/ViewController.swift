@@ -11,20 +11,40 @@ import Foundation
 
 
 let scriptName = "exportFromEquip"
-var filePath = Bundle.main.path(forResource: scriptName, ofType: "py", inDirectory: "python")
-
+let computerCsv = "computerList"
+let scriptFilePath = Bundle.main.path(forResource: scriptName, ofType: "py", inDirectory: "python")
+let computerListCSV = Bundle.main.path(forResource: "computerList", ofType: "csv", inDirectory: "csv")
+let activeCSV = Bundle.main.path(forResource: "ActiveMacs", ofType: "csv", inDirectory: "csv")
+let inActiveCSV = Bundle.main.path(forResource: "inActiveMacs", ofType: "csv", inDirectory: "csv")
 
 class ViewController: NSViewController {
     
     @IBOutlet weak var userName: NSTextField!
     @IBOutlet weak var password: NSSecureTextField!
+    @IBOutlet var computerBox: NSScrollView!
+    
+    
     @IBAction func runScript(_ sender: NSButton) {
         launchScript()
+            sleep(25)
+            parseCSV()
+    }
+    
+    
+    func readDataFromFile(file:String)-> String!{
+        guard let filepath = Bundle.main.path (forResource: file, ofType: "csv",  inDirectory: "csv")
+            else {return nil}
+        do {
+            let contents = try String(contentsOfFile: filepath)
+            return contents
+        } catch {
+            print("File Read Error for file \(filepath)")
+            return nil
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
        
     }
     
@@ -38,8 +58,18 @@ class ViewController: NSViewController {
         let process = Process()
         process.launchPath = "/Library/Frameworks/Python.framework/Versions/3.7/bin/python3"
         // process.currentDirectoryPath = "\(scriptFilePath)"
-        process.arguments = ([filePath, userName.stringValue, password.stringValue] as! [String])
+        process.arguments = ([scriptFilePath, userName.stringValue, password.stringValue, activeCSV, inActiveCSV, computerListCSV]) as? [String]
         process.launch()
+        parseCSV()
+    }
+    
+    func parseCSV(){
+        var masterList = [readDataFromFile(file: "ActiveMacs")]
+        print(masterList[0]!)
+        for computer in masterList {
+            computerBox.documentView!.insertNewline(computer)
+            computerBox.documentView!.insertText(computer!)
+        }
     }
     
 

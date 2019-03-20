@@ -12,15 +12,13 @@ from selenium.webdriver.common.keys import Keys
 currentUser = os.getlogin()
 
 #Set Equip username and password as arguments for script
-firstarg = sys.argv[1]
-secondarg = sys.argv[2]
-username = str(firstarg)
-password = str(secondarg)
+username = str(sys.argv[1])
+password = str(sys.argv[2])
+active = str(sys.argv[3])
+inactive = str(sys.argv[4])
+computerList = str(sys.argv[5])
 
 #CSV Data
-computerList = str("/Applications/inventorySync.app/Contents/Resources/csv/computerList.csv")
-active = str("/Applications/inventorySync.app/Contents/Resources/csv/ActiveMacs.csv")
-inactive = str("/Applications/inventorySync.app/Contents/Resources/csv/inActiveMacs.csv")
 cpuListPath = str('/Users/'+str(currentUser)+'/Downloads/AssetTemplate_81_1.csv')
 
 #Remove old CSV files
