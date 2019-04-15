@@ -18,17 +18,32 @@ let activeCSV = Bundle.main.path(forResource: "ActiveMacs", ofType: "csv", inDir
 let inActiveCSV = Bundle.main.path(forResource: "inActiveMacs", ofType: "csv", inDirectory: "csv")
 let webdriver = Bundle.main.path(forResource: "chromedriver", ofType: "", inDirectory: "webdriver")
 
-class ViewController: NSViewController {
+//Create data structures
+var computers = [[String:String]]()
+var dictionaryItems = [String:String]()
+//var computers = [[String:String]]()
+
+
+class ViewController: NSViewController,NSTableViewDelegate, NSTableViewDataSource {
     
-    @IBOutlet weak var userName: NSTextField!
-    @IBOutlet weak var password: NSSecureTextField!
-    @IBOutlet var computerBox: NSScrollView!
+    @IBOutlet var tableView: NSTableView!
     
     
-    @IBAction func runScript(_ sender: NSButton) {
-        launchScript()
-            sleep(25)
-            parseCSV()
+    func test(){
+        print("test")
+    }
+    //Function to read data from CSV.
+    func getData(fileName:String, header1:String, header2:String){
+        var data: [[String]] = readDataFromFile(file:fileName).components(separatedBy: "\n").map{ $0.components(separatedBy: ",")}
+        for i in 0..<data.count-1 {
+            let items = data[i]
+            dictionaryItems[header1] = "\(items[0])"
+            dictionaryItems[header2] = "\(items[1])"
+           // dictionaryItems[header3] = "\(items[2])"
+            computers.append(dictionaryItems)
+            }
+        print(computers)
+        
     }
     
     
@@ -36,7 +51,9 @@ class ViewController: NSViewController {
         guard let filepath = Bundle.main.path (forResource: file, ofType: "csv",  inDirectory: "csv")
             else {return nil}
         do {
-            let contents = try String(contentsOfFile: filepath)
+            var contents = try String(contentsOfFile: filepath)
+            contents = contents.replacingOccurrences(of: "\r", with: "\n")
+            contents = contents.replacingOccurrences(of: "\n\n", with: "\n")
             return contents
         } catch {
             print("File Read Error for file \(filepath)")
@@ -44,10 +61,13 @@ class ViewController: NSViewController {
         }
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        getData(fileName:"ActiveMacs", header1: "serialNumber", header2: "assetTag")
+       //  getData(fileName:"inActiveMacs", header1: "serialNumber2", header2: "assetTag2")
     }
+    
     
     override var representedObject: Any? {
         didSet {
@@ -55,24 +75,15 @@ class ViewController: NSViewController {
         }
     }
 
-    func launchScript(){
-        let process = Process()
-        process.launchPath = "/Library/Frameworks/Python.framework/Versions/3.7/bin/python3"
-        // process.currentDirectoryPath = "\(scriptFilePath)"
-        process.arguments = ([scriptFilePath, userName.stringValue, password.stringValue, activeCSV, inActiveCSV, computerListCSV, webdriver]) as? [String]
-        process.launch()
-        parseCSV()
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        return computers.count
     }
-    
-    func parseCSV(){
-        var masterList = [readDataFromFile(file: "ActiveMacs")]
-        print(masterList[0])
-        for computer in masterList {
-            computerBox.documentView!.insertNewline(computer)
-            computerBox.documentView!.insertText(computer!)
-        }
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        var result:NSTableCellView
+        result = tableView.makeView(withIdentifier: (tableColumn?.identifier)!, owner: self) as! NSTableCellView
+        result.textField?.stringValue = computers[row][(tableColumn?.identifier.rawValue)!]!
+        return result
     }
-    
 
 }
 
