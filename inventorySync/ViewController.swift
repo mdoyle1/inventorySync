@@ -19,31 +19,48 @@ let inActiveCSV = Bundle.main.path(forResource: "inActiveMacs", ofType: "csv", i
 let webdriver = Bundle.main.path(forResource: "chromedriver", ofType: "", inDirectory: "webdriver")
 
 //Create data structures
-var computers = [[String:String]]()
+var activeComputers = [[String:String]]()
+var inActiveComputers = [[String:String]]()
 var dictionaryItems = [String:String]()
 //var computers = [[String:String]]()
 
 
 class ViewController: NSViewController,NSTableViewDelegate, NSTableViewDataSource {
     
-    @IBOutlet var tableView: NSTableView!
+    @IBOutlet weak var tableView1: NSTableView!
+    @IBOutlet weak var tableView2: NSTableView!
+    
+    var dataSource1 : FirstDataSource!
+    var dataSource2 : SecondDataSource!
+    
+    
+    func prepareTableViews (){
+        dataSource1 = FirstDataSource()
+        self.tableView1.dataSource = dataSource1
+        self.tableView1.delegate = dataSource1
+        dataSource2 = SecondDataSource()
+        self.tableView2.dataSource = dataSource2
+        self.tableView2.delegate = dataSource2
+    }
     
     
     func test(){
         print("test")
     }
     //Function to read data from CSV.
-    func getData(fileName:String, header1:String, header2:String){
+    // inout with -> Void is used to pass an array into a function
+    
+    func getData(fileName:String, array: inout[[String:String]], header1:String, header2:String) -> Void {
+        //computers = [[:]]
         var data: [[String]] = readDataFromFile(file:fileName).components(separatedBy: "\n").map{ $0.components(separatedBy: ",")}
         for i in 0..<data.count-1 {
             let items = data[i]
             dictionaryItems[header1] = "\(items[0])"
             dictionaryItems[header2] = "\(items[1])"
            // dictionaryItems[header3] = "\(items[2])"
-            computers.append(dictionaryItems)
+            array.append(dictionaryItems)
             }
-        print(computers)
-        
+        print(array)
     }
     
     
@@ -60,13 +77,19 @@ class ViewController: NSViewController,NSTableViewDelegate, NSTableViewDataSourc
             return nil
         }
     }
-    
-    
+  
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        getData(fileName:"ActiveMacs", header1: "serialNumber", header2: "assetTag")
-       //  getData(fileName:"inActiveMacs", header1: "serialNumber2", header2: "assetTag2")
+       prepareTableViews()
+        
+         getData(fileName:"inActiveMacs", array: &inActiveComputers, header1: "serialNumber", header2: "assetTag")
+       
+        //getData(fileName:"inActiveMacs", array: &inActiveComputers, header1: "serialNumber2", header2: "assetTag2")
+         getData(fileName:"ActiveMacs", array: &activeComputers, header1: "serialNumber", header2: "assetTag")
+    print("test \(inActiveComputers[1])")
     }
+    
     
     
     override var representedObject: Any? {
@@ -75,15 +98,6 @@ class ViewController: NSViewController,NSTableViewDelegate, NSTableViewDataSourc
         }
     }
 
-    func numberOfRows(in tableView: NSTableView) -> Int {
-        return computers.count
-    }
-    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        var result:NSTableCellView
-        result = tableView.makeView(withIdentifier: (tableColumn?.identifier)!, owner: self) as! NSTableCellView
-        result.textField?.stringValue = computers[row][(tableColumn?.identifier.rawValue)!]!
-        return result
-    }
-
+    
 }
 
