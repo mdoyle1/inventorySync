@@ -53,7 +53,7 @@ class ViewController: NSViewController,NSTableViewDelegate, NSTableViewDataSourc
     func getData(fileName:String, array: inout[[String:String]], header1:String, header2:String) -> Void {
         //computers = [[:]]
         var data: [[String]] = readDataFromFile(file:fileName).components(separatedBy: "\n").map{ $0.components(separatedBy: ",")}
-        for i in 0..<data.count-1 {
+        for i in 1..<data.count-1 {
             let items = data[i]
             dictionaryItems[header1] = "\(items[0])"
             dictionaryItems[header2] = "\(items[1])"

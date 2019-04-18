@@ -933,7 +933,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xKu-ug-J18">
-                                <rect key="frame" x="366" y="551" width="155" height="29"/>
+                                <rect key="frame" x="361" y="551" width="160" height="29"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="In-Active Macs" allowsEditingTextAttributes="YES" id="bR2-qK-fTb">
                                     <font key="font" metaFont="system" size="24"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -984,6 +984,9 @@
                                                                 <constraint firstItem="2Rs-ma-CX8" firstAttribute="leading" secondItem="U4c-3u-kah" secondAttribute="leading" constant="2" id="gVT-7g-dX5"/>
                                                                 <constraint firstItem="2Rs-ma-CX8" firstAttribute="centerX" secondItem="U4c-3u-kah" secondAttribute="centerX" id="y7c-Zg-a6N"/>
                                                             </constraints>
+                                                            <connections>
+                                                                <outlet property="textField" destination="2Rs-ma-CX8" id="Y2f-k9-t81"/>
+                                                            </connections>
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
@@ -1018,6 +1021,9 @@
                                                                 <constraint firstItem="tDG-OG-muR" firstAttribute="leading" secondItem="RCh-fK-cRK" secondAttribute="leading" constant="2" id="Tdj-rc-GHc"/>
                                                                 <constraint firstItem="tDG-OG-muR" firstAttribute="centerX" secondItem="RCh-fK-cRK" secondAttribute="centerX" id="vSR-0w-vzx"/>
                                                             </constraints>
+                                                            <connections>
+                                                                <outlet property="textField" destination="tDG-OG-muR" id="H6a-Yg-QRt"/>
+                                                            </connections>
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
