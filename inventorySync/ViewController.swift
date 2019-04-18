@@ -22,8 +22,6 @@ let webdriver = Bundle.main.path(forResource: "chromedriver", ofType: "", inDire
 var activeComputers = [[String:String]]()
 var inActiveComputers = [[String:String]]()
 var dictionaryItems = [String:String]()
-//var computers = [[String:String]]()
-
 
 class ViewController: NSViewController,NSTableViewDelegate, NSTableViewDataSource {
     
@@ -44,9 +42,6 @@ class ViewController: NSViewController,NSTableViewDelegate, NSTableViewDataSourc
     }
     
     
-    func test(){
-        print("test")
-    }
     //Function to read data from CSV.
     // inout with -> Void is used to pass an array into a function
     
@@ -60,7 +55,6 @@ class ViewController: NSViewController,NSTableViewDelegate, NSTableViewDataSourc
            // dictionaryItems[header3] = "\(items[2])"
             array.append(dictionaryItems)
             }
-        print(array)
     }
     
     
@@ -81,13 +75,14 @@ class ViewController: NSViewController,NSTableViewDelegate, NSTableViewDataSourc
 
     override func viewDidLoad() {
         super.viewDidLoad()
-       prepareTableViews()
+      
+        //Prepare tables
+        prepareTableViews()
         
+        //Get Data from CSVs
          getData(fileName:"inActiveMacs", array: &inActiveComputers, header1: "serialNumber", header2: "assetTag")
-       
-        //getData(fileName:"inActiveMacs", array: &inActiveComputers, header1: "serialNumber2", header2: "assetTag2")
          getData(fileName:"ActiveMacs", array: &activeComputers, header1: "serialNumber", header2: "assetTag")
-    print("test \(inActiveComputers[1])")
+
     }
     
     

@@ -14,10 +14,10 @@
 		7F2FB5B0223BE6A40073D73A /* inventorySyncUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2FB5AF223BE6A40073D73A /* inventorySyncUITests.swift */; };
 		7F2FB5CE223C208E0073D73A /* python in Resources */ = {isa = PBXBuildFile; fileRef = 7F2FB5CD223C208E0073D73A /* python */; };
 		7F4C0F3122568298006E72A0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4C0F3022568298006E72A0 /* ViewController.swift */; };
-		7F4C0F35225685AC006E72A0 /* loginWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4C0F34225685AC006E72A0 /* loginWindow.swift */; };
 		7F4C0F37225782E5006E72A0 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 7F4C0F36225782E5006E72A0 /* images */; };
-		7FD00C70226770F000E71668 /* FirstDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD00C6F226770F000E71668 /* FirstDataSource.swift */; };
-		7FD00C722267711A00E71668 /* SecondDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD00C712267711A00E71668 /* SecondDataSource.swift */; };
+		7F98474F2268FE4E00E7503F /* loginWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F98474E2268FE4E00E7503F /* loginWindow.swift */; };
+		7F9847532268FE9300E7503F /* SecondDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9847512268FE5900E7503F /* SecondDataSource.swift */; };
+		7F9847542268FE9600E7503F /* FirstDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9847522268FE5900E7503F /* FirstDataSource.swift */; };
 		C3C014822241DDA100CAD4FC /* csv in Resources */ = {isa = PBXBuildFile; fileRef = C3C014812241DDA100CAD4FC /* csv */; };
 		C3C014862241DE3100CAD4FC /* webdriver in Resources */ = {isa = PBXBuildFile; fileRef = C3C014852241DE3100CAD4FC /* webdriver */; };
 /* End PBXBuildFile section */
@@ -54,10 +54,10 @@
 		7F2FB5B1223BE6A40073D73A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7F2FB5CD223C208E0073D73A /* python */ = {isa = PBXFileReference; lastKnownFileType = folder; path = python; sourceTree = "<group>"; };
 		7F4C0F3022568298006E72A0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		7F4C0F34225685AC006E72A0 /* loginWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginWindow.swift; sourceTree = "<group>"; };
 		7F4C0F36225782E5006E72A0 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
-		7FD00C6F226770F000E71668 /* FirstDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstDataSource.swift; sourceTree = "<group>"; };
-		7FD00C712267711A00E71668 /* SecondDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondDataSource.swift; sourceTree = "<group>"; };
+		7F98474E2268FE4E00E7503F /* loginWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginWindow.swift; sourceTree = "<group>"; };
+		7F9847512268FE5900E7503F /* SecondDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondDataSource.swift; sourceTree = "<group>"; };
+		7F9847522268FE5900E7503F /* FirstDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstDataSource.swift; sourceTree = "<group>"; };
 		C3C014812241DDA100CAD4FC /* csv */ = {isa = PBXFileReference; lastKnownFileType = folder; path = csv; sourceTree = "<group>"; };
 		C3C014852241DE3100CAD4FC /* webdriver */ = {isa = PBXFileReference; lastKnownFileType = folder; path = webdriver; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -114,15 +114,14 @@
 				7F2FB5CD223C208E0073D73A /* python */,
 				C3C014812241DDA100CAD4FC /* csv */,
 				C3C014852241DE3100CAD4FC /* webdriver */,
+				7F9847552268FE9E00E7503F /* Tables */,
+				7F98474E2268FE4E00E7503F /* loginWindow.swift */,
 				7F2FB591223BE6A20073D73A /* AppDelegate.swift */,
 				7F4C0F3022568298006E72A0 /* ViewController.swift */,
 				7F2FB597223BE6A40073D73A /* Main.storyboard */,
-				7FD00C6F226770F000E71668 /* FirstDataSource.swift */,
-				7FD00C712267711A00E71668 /* SecondDataSource.swift */,
 				7F2FB59A223BE6A40073D73A /* Info.plist */,
 				7F2FB59B223BE6A40073D73A /* inventorySync.entitlements */,
 				7F2FB595223BE6A40073D73A /* Assets.xcassets */,
-				7F4C0F34225685AC006E72A0 /* loginWindow.swift */,
 			);
 			path = inventorySync;
 			sourceTree = "<group>";
@@ -143,6 +142,16 @@
 				7F2FB5B1223BE6A40073D73A /* Info.plist */,
 			);
 			path = inventorySyncUITests;
+			sourceTree = "<group>";
+		};
+		7F9847552268FE9E00E7503F /* Tables */ = {
+			isa = PBXGroup;
+			children = (
+				7F9847512268FE5900E7503F /* SecondDataSource.swift */,
+				7F9847522268FE5900E7503F /* FirstDataSource.swift */,
+			);
+			name = Tables;
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -284,11 +293,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7F4C0F35225685AC006E72A0 /* loginWindow.swift in Sources */,
+				7F9847532268FE9300E7503F /* SecondDataSource.swift in Sources */,
+				7F9847542268FE9600E7503F /* FirstDataSource.swift in Sources */,
+				7F98474F2268FE4E00E7503F /* loginWindow.swift in Sources */,
 				7F4C0F3122568298006E72A0 /* ViewController.swift in Sources */,
 				7F2FB592223BE6A20073D73A /* AppDelegate.swift in Sources */,
-				7FD00C70226770F000E71668 /* FirstDataSource.swift in Sources */,
-				7FD00C722267711A00E71668 /* SecondDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,9 +8,6 @@
 
 import Cocoa
 import Foundation
-protocol DataSentDelegate {
-    func userDidAuthenticate(base64Credentials: String, url: String)
-}
 
 class loginWindow: NSViewController{
 
@@ -19,11 +16,13 @@ class loginWindow: NSViewController{
     @IBOutlet var password: NSSecureTextField!
     @IBAction func login(_ sender: Any) {
         launchScript()
-        ViewController().test()
+       
+        // This needs to be adjusted according to how fast the script can run on a the host computer.
         sleep(25)
-         performSegue(withIdentifier: "segueLogin", sender: self)
-       // self.dismiss(self)
+        // Sleep longer if app doesn't get data...
         
+        performSegue(withIdentifier: "segueLogin", sender: self)
+       // self.dismiss(self)
 }
     
     
@@ -44,6 +43,5 @@ class loginWindow: NSViewController{
 override func viewDidAppear() {
     super.viewDidAppear()
     preferredContentSize = NSSize(width: 480, height: 270)
-    // self.textField.becomeFirstResponder()
 }
 }
