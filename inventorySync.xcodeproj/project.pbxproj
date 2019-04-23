@@ -15,6 +15,9 @@
 		7F2FB5CE223C208E0073D73A /* python in Resources */ = {isa = PBXBuildFile; fileRef = 7F2FB5CD223C208E0073D73A /* python */; };
 		7F4C0F3122568298006E72A0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4C0F3022568298006E72A0 /* ViewController.swift */; };
 		7F4C0F37225782E5006E72A0 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 7F4C0F36225782E5006E72A0 /* images */; };
+		7F50F922226E01FD0061B61B /* xmlBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F50F921226E01FD0061B61B /* xmlBuilder.swift */; };
+		7F50F924226E0FD60061B61B /* popPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F50F923226E0FD60061B61B /* popPrompt.swift */; };
+		7F7F8237226E31D500D75B43 /* jamfSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7F8235226E31D500D75B43 /* jamfSync.swift */; };
 		7F98474F2268FE4E00E7503F /* loginWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F98474E2268FE4E00E7503F /* loginWindow.swift */; };
 		7F9847532268FE9300E7503F /* SecondDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9847512268FE5900E7503F /* SecondDataSource.swift */; };
 		7F9847542268FE9600E7503F /* FirstDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9847522268FE5900E7503F /* FirstDataSource.swift */; };
@@ -55,6 +58,11 @@
 		7F2FB5CD223C208E0073D73A /* python */ = {isa = PBXFileReference; lastKnownFileType = folder; path = python; sourceTree = "<group>"; };
 		7F4C0F3022568298006E72A0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7F4C0F36225782E5006E72A0 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
+		7F50F921226E01FD0061B61B /* xmlBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xmlBuilder.swift; sourceTree = "<group>"; };
+		7F50F923226E0FD60061B61B /* popPrompt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = popPrompt.swift; sourceTree = "<group>"; };
+		7F7F8235226E31D500D75B43 /* jamfSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jamfSync.swift; sourceTree = "<group>"; };
+		7F7F823B226E397A00D75B43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Base; path = Base.lproj/equip.png; sourceTree = "<group>"; };
+		7F7F823D226E399100D75B43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Base; path = Base.lproj/jamf.png; sourceTree = "<group>"; };
 		7F98474E2268FE4E00E7503F /* loginWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginWindow.swift; sourceTree = "<group>"; };
 		7F9847512268FE5900E7503F /* SecondDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondDataSource.swift; sourceTree = "<group>"; };
 		7F9847522268FE5900E7503F /* FirstDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstDataSource.swift; sourceTree = "<group>"; };
@@ -118,10 +126,15 @@
 				7F98474E2268FE4E00E7503F /* loginWindow.swift */,
 				7F2FB591223BE6A20073D73A /* AppDelegate.swift */,
 				7F4C0F3022568298006E72A0 /* ViewController.swift */,
+				7F7F8235226E31D500D75B43 /* jamfSync.swift */,
+				7F50F923226E0FD60061B61B /* popPrompt.swift */,
+				7F7F823C226E397A00D75B43 /* equip.png */,
 				7F2FB597223BE6A40073D73A /* Main.storyboard */,
 				7F2FB59A223BE6A40073D73A /* Info.plist */,
+				7F50F921226E01FD0061B61B /* xmlBuilder.swift */,
 				7F2FB59B223BE6A40073D73A /* inventorySync.entitlements */,
 				7F2FB595223BE6A40073D73A /* Assets.xcassets */,
+				7F7F823E226E399100D75B43 /* jamf.png */,
 			);
 			path = inventorySync;
 			sourceTree = "<group>";
@@ -294,7 +307,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F9847532268FE9300E7503F /* SecondDataSource.swift in Sources */,
+				7F50F922226E01FD0061B61B /* xmlBuilder.swift in Sources */,
+				7F50F924226E0FD60061B61B /* popPrompt.swift in Sources */,
 				7F9847542268FE9600E7503F /* FirstDataSource.swift in Sources */,
+				7F7F8237226E31D500D75B43 /* jamfSync.swift in Sources */,
 				7F98474F2268FE4E00E7503F /* loginWindow.swift in Sources */,
 				7F4C0F3122568298006E72A0 /* ViewController.swift in Sources */,
 				7F2FB592223BE6A20073D73A /* AppDelegate.swift in Sources */,
@@ -339,6 +355,22 @@
 				7F2FB598223BE6A40073D73A /* Base */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		7F7F823C226E397A00D75B43 /* equip.png */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7F7F823B226E397A00D75B43 /* Base */,
+			);
+			name = equip.png;
+			sourceTree = "<group>";
+		};
+		7F7F823E226E399100D75B43 /* jamf.png */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7F7F823D226E399100D75B43 /* Base */,
+			);
+			name = jamf.png;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

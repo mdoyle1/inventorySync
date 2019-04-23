@@ -107,8 +107,8 @@ csv_ActiveComputers = csv.writer(ActiveMacsCsv)
 csv_InactiveComputers = csv.writer(inActiveMacsCsv)
 
 #Create headers
-csv_InactiveComputers.writerow(["Serial Number", "Asset Tag", "Is-Active"])
-csv_ActiveComputers.writerow(["Serial Number", "Asset Tag", "Is-Active"])
+csv_InactiveComputers.writerow(["Serial Number", "Asset Tag"])
+csv_ActiveComputers.writerow(["Serial Number", "Asset Tag"])
 
 #CSV To Uppercase
 for line in fileinput.input(cpuListPath, inplace=1):
@@ -130,12 +130,11 @@ completeListCSV = csv.reader(completeList)
 #For Loop to append Macs to CSV
 for row in completeListCSV:
     if "MAC" in row[1] and row[29] == "TRUE":
-        #csv_ActiveComputers.writerow([row[3],row[2],row[29],row[1]])
-        csv_ActiveComputers.writerow([row[3],row[2],row[29]])
+        csv_ActiveComputers.writerow([row[3],row[2]])
         print(row[29])
     #activeMacs.append(row)
     elif "MAC" in row[1] and row[29] == "FALSE":
-        csv_InactiveComputers.writerow([row[3],row[2],row[29]])
+        csv_InactiveComputers.writerow([row[3],row[2]])
 
 #close open csv
 ActiveMacsCsv.close()

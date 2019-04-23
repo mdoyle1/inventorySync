@@ -10,6 +10,11 @@ import Cocoa
 import Foundation
 
 
+// Global Variables
+let serverURL = "https://ecsu-jss.easternct.edu:8443/JSSResource/"
+var doNotRun: String!
+
+
 let scriptName = "exportFromEquip"
 let computerCsv = "computerList"
 let scriptFilePath = Bundle.main.path(forResource: scriptName, ofType: "py", inDirectory: "python")
@@ -28,8 +33,13 @@ class ViewController: NSViewController,NSTableViewDelegate, NSTableViewDataSourc
     @IBOutlet weak var tableView1: NSTableView!
     @IBOutlet weak var tableView2: NSTableView!
     
+    
     var dataSource1 : FirstDataSource!
     var dataSource2 : SecondDataSource!
+    
+    @IBAction func segueSync(_ sender: NSButton) {
+         performSegue(withIdentifier: "jamfLogin", sender: self)
+    }
     
     
     func prepareTableViews (){
