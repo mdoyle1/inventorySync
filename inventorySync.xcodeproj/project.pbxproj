@@ -14,7 +14,6 @@
 		7F2FB5B0223BE6A40073D73A /* inventorySyncUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2FB5AF223BE6A40073D73A /* inventorySyncUITests.swift */; };
 		7F2FB5CE223C208E0073D73A /* python in Resources */ = {isa = PBXBuildFile; fileRef = 7F2FB5CD223C208E0073D73A /* python */; };
 		7F4C0F3122568298006E72A0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4C0F3022568298006E72A0 /* ViewController.swift */; };
-		7F4C0F37225782E5006E72A0 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 7F4C0F36225782E5006E72A0 /* images */; };
 		7F50F922226E01FD0061B61B /* xmlBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F50F921226E01FD0061B61B /* xmlBuilder.swift */; };
 		7F50F924226E0FD60061B61B /* popPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F50F923226E0FD60061B61B /* popPrompt.swift */; };
 		7F7F8237226E31D500D75B43 /* jamfSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7F8235226E31D500D75B43 /* jamfSync.swift */; };
@@ -57,7 +56,6 @@
 		7F2FB5B1223BE6A40073D73A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7F2FB5CD223C208E0073D73A /* python */ = {isa = PBXFileReference; lastKnownFileType = folder; path = python; sourceTree = "<group>"; };
 		7F4C0F3022568298006E72A0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		7F4C0F36225782E5006E72A0 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
 		7F50F921226E01FD0061B61B /* xmlBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xmlBuilder.swift; sourceTree = "<group>"; };
 		7F50F923226E0FD60061B61B /* popPrompt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = popPrompt.swift; sourceTree = "<group>"; };
 		7F7F8235226E31D500D75B43 /* jamfSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jamfSync.swift; sourceTree = "<group>"; };
@@ -118,7 +116,6 @@
 		7F2FB590223BE6A20073D73A /* inventorySync */ = {
 			isa = PBXGroup;
 			children = (
-				7F4C0F36225782E5006E72A0 /* images */,
 				7F2FB5CD223C208E0073D73A /* python */,
 				C3C014812241DDA100CAD4FC /* csv */,
 				C3C014852241DE3100CAD4FC /* webdriver */,
@@ -276,7 +273,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7F4C0F37225782E5006E72A0 /* images in Resources */,
 				7F2FB5CE223C208E0073D73A /* python in Resources */,
 				C3C014862241DE3100CAD4FC /* webdriver in Resources */,
 				7F2FB596223BE6A40073D73A /* Assets.xcassets in Resources */,
