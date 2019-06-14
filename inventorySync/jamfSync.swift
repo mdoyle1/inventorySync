@@ -29,6 +29,11 @@ class jamfSync: NSViewController, URLSessionDelegate {
     var base64Credentials: String!
     var verified = false
     
+    @IBOutlet weak var barProgress: NSProgressIndicator!
+    @IBOutlet weak var lblCurrent: NSTextField!
+    @IBOutlet weak var lblOf: NSTextField!
+    @IBOutlet weak var lblLine: NSTextField!
+    @IBOutlet weak var lblEndLine: NSTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -120,6 +125,12 @@ class jamfSync: NSViewController, URLSessionDelegate {
                             }
                             self.spinProgress.stopAnimation(self)
                             print("Successfully Authenticated With Jamf!")
+                            globalServerCredentials = self.base64Credentials
+                            print("Updating inventory...")
+                            parseCSV()
+                            prepareToBuildXML()
+                            globalHTTPFunction = "PUT"
+                            self.uploadData()
                             //self.btnSubmitOutlet.isHidden = false
                             
                             if self.delegateAuth != nil {
@@ -148,13 +159,157 @@ class jamfSync: NSViewController, URLSessionDelegate {
             doNotRun = "0"
         }
     }
-    
-    
-    
     func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
         completionHandler(Foundation.URLSession.AuthChallengeDisposition.useCredential, URLCredential(trust: challenge.protectionSpace.serverTrust!))
     }
     
-
+    @IBAction func CSVtest(_ sender: NSButton) {
+        parseCSV()
+        prepareToBuildXML()
+        globalHTTPFunction = "PUT"
+        uploadData()
+    }
     
+   
+    
+    // MARK: - UPLOAD DATA FUNCTION
+    func uploadData() {
+        
+        // Async update the UI for the start of the run
+        //    DispatchQueue.main.async {
+        //        self.beginRunView()
+        //    }
+        // Declare variables needed for progress tracking
+        var rowCounter = 0
+        let row = globalParsedCSV.rows // Send parsed rows to an array
+        let lastrow = row.count - 1
+        var i = 0
+        lblEndLine.stringValue = "\(row.count)"
+        
+        // Set the max concurrent ops to the selectable number
+        myOpQueue.maxConcurrentOperationCount = 1
+        
+        // Semaphore causes the op queue to wait for responses before sending a new request
+        let semaphore = DispatchSemaphore(value: 0)
+        
+        
+        while i <= lastrow {
+            // Sets the current row to the row of the loop
+            let currentRow = row[i]
+            
+            // Add a PUT or POST request to the operation queue
+            myOpQueue.addOperation {
+                if globalHTTPFunction == "PUT" {
+                    
+                    // TODO clean this section up I hate this logic block soooooo much.
+                 
+                    
+                myURL = xmlBuilder().createPOSTURL(url: globalServerURL)
+                print(myURL)
+                
+                let encodedXML = xmlBuilder().createXML(popIdentifier: "serial", popDevice: "macOS Devices", popAttribute: "Asset Tag", eaID: "", columnB: currentRow[1], columnA: currentRow[0])
+                
+                let request = NSMutableURLRequest(url: myURL)
+                request.httpMethod = globalHTTPFunction
+                request.httpBody = encodedXML
+                    print(request.httpBody as Any)
+                let configuration = URLSessionConfiguration.default
+                configuration.httpAdditionalHeaders = ["Authorization" : "Basic \(globalServerCredentials!)", "Content-Type" : "text/xml", "Accept" : "text/xml"]
+                    print(configuration.httpAdditionalHeaders as Any)
+                let session = Foundation.URLSession(configuration: configuration, delegate: self, delegateQueue: OperationQueue.main)
+                let task = session.dataTask(with: request as URLRequest, completionHandler: {
+                    (data, response, error) -> Void in
+                    
+                    // If debug mode is enabled, print out the full data from the curl
+                    if let myData = String(data: data!, encoding: .utf8) {
+                        if globalDebug == "on" {
+                            print("Full Response Data:")
+                            print(myData)
+                            print("")
+                        }
+                    }
+                    // If we got a response
+                    if let httpResponse = response as? HTTPURLResponse {
+                        
+                        // If that response is a success response
+                        if httpResponse.statusCode >= 200 && httpResponse.statusCode <= 299 {
+                            DispatchQueue.main.async {
+                                // Print information to the log box
+                                print("Device \(currentRow[0]) - ")
+                               print("OK! - \(httpResponse.statusCode)")
+                                // Update the progress bar
+                                self.barProgress.doubleValue = Double(rowCounter)
+                            }
+                        } else {
+                            // If that response is not a success response
+                            DispatchQueue.main.async {
+                                // Print information to the log box
+                                print("Device \(currentRow[0]) - ")
+                                print("Failed! - \(httpResponse.statusCode)!")
+                                if httpResponse.statusCode == 404 {
+                                    print("")
+                                    print( "HTTP 404 means 'not found'. There is no device with \(globalEndpointID!) \(currentRow[0]) enrolled in Jamf Pro.")
+                                    print("")
+                                }
+                                if httpResponse.statusCode == 409 {
+                                    print("")
+                                    print("HTTP 409 is a generic error code code. Turn on Advanced Debugging from the settings menu at the top of the screen for more information.")
+                                   print("")
+                                }
+                                // Update the progress bar
+                                self.barProgress.doubleValue = Double(rowCounter)
+                            }
+                        }
+                        // Increment the row counter and signal that the response was received
+                        rowCounter += 1
+                        semaphore.signal()
+                        // Async update the row count label
+                        DispatchQueue.main.async {
+                            self.lblLine.stringValue = "\(rowCounter)"
+                        }
+                    }
+                    // Log errors if received (we probably shouldn't ever end up needing this)
+                    if error != nil {
+                        _ = popPrompt().generalWarning(question: "Fatal Error", text: "The MUT received a fatal error while uploading. \n\n \(error!.localizedDescription)")
+                    }
+                })
+                    // Send the request and then wait for the semaphore signal
+                    task.resume()
+                    semaphore.wait()
+                    
+                    // If we're on the last row sent, update the UI to reset for another run
+                    if rowCounter == lastrow || lastrow == 0 {
+                        DispatchQueue.main.async {
+                            //resetView()
+                        }
+                    }
+                }
+                i += 1
+            }
+        }
+                   
+}
+    
+    func beginRunView() {
+        print("Beginning Update Run!")
+        print("")
+        self.lblLine.isHidden = false
+        self.lblCurrent.isHidden = false
+        self.lblEndLine.isHidden = false
+        self.lblOf.isHidden = false
+        self.barProgress.isHidden = false
+        self.barProgress.maxValue = Double(globalParsedCSV.rows.count)
+       // self.btnSubmitOutlet.isHidden = true
+        //self.btnCancelOutlet.isHidden = false
+    }
+    
+ 
+    
+    func userDidAuthenticate(base64Credentials: String, url: String) {
+        //print(base64Credentials)
+        globalServerCredentials = base64Credentials
+        //print(url)
+        globalServerURL = url
+        self.verified = true
+    }
 }

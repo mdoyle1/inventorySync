@@ -20,6 +20,7 @@
 		7F98474F2268FE4E00E7503F /* loginWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F98474E2268FE4E00E7503F /* loginWindow.swift */; };
 		7F9847532268FE9300E7503F /* SecondDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9847512268FE5900E7503F /* SecondDataSource.swift */; };
 		7F9847542268FE9600E7503F /* FirstDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9847522268FE5900E7503F /* FirstDataSource.swift */; };
+		7FD9CAE42295751F003027EB /* CSwiftV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD9CAE32295751F003027EB /* CSwiftV.swift */; };
 		C3C014822241DDA100CAD4FC /* csv in Resources */ = {isa = PBXBuildFile; fileRef = C3C014812241DDA100CAD4FC /* csv */; };
 		C3C014862241DE3100CAD4FC /* webdriver in Resources */ = {isa = PBXBuildFile; fileRef = C3C014852241DE3100CAD4FC /* webdriver */; };
 /* End PBXBuildFile section */
@@ -64,6 +65,7 @@
 		7F98474E2268FE4E00E7503F /* loginWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginWindow.swift; sourceTree = "<group>"; };
 		7F9847512268FE5900E7503F /* SecondDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondDataSource.swift; sourceTree = "<group>"; };
 		7F9847522268FE5900E7503F /* FirstDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstDataSource.swift; sourceTree = "<group>"; };
+		7FD9CAE32295751F003027EB /* CSwiftV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSwiftV.swift; sourceTree = "<group>"; };
 		C3C014812241DDA100CAD4FC /* csv */ = {isa = PBXFileReference; lastKnownFileType = folder; path = csv; sourceTree = "<group>"; };
 		C3C014852241DE3100CAD4FC /* webdriver */ = {isa = PBXFileReference; lastKnownFileType = folder; path = webdriver; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -123,6 +125,7 @@
 				7F98474E2268FE4E00E7503F /* loginWindow.swift */,
 				7F2FB591223BE6A20073D73A /* AppDelegate.swift */,
 				7F4C0F3022568298006E72A0 /* ViewController.swift */,
+				7FD9CAE32295751F003027EB /* CSwiftV.swift */,
 				7F7F8235226E31D500D75B43 /* jamfSync.swift */,
 				7F50F923226E0FD60061B61B /* popPrompt.swift */,
 				7F7F823C226E397A00D75B43 /* equip.png */,
@@ -309,6 +312,7 @@
 				7F7F8237226E31D500D75B43 /* jamfSync.swift in Sources */,
 				7F98474F2268FE4E00E7503F /* loginWindow.swift in Sources */,
 				7F4C0F3122568298006E72A0 /* ViewController.swift in Sources */,
+				7FD9CAE42295751F003027EB /* CSwiftV.swift in Sources */,
 				7F2FB592223BE6A20073D73A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
